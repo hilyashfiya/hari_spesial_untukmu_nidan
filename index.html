@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+  <title>Player Two, Forever</title>
+  <meta name="description" content="A romantic pixel-art LDR adventure game — crafted with love.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pixelify+Sans:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <script type="module" src="js/main.js"></script>
+  <script>
+    // Universal file:// and offline fallback loader:
+    // If ES modules fail or are blocked by browser local file:// CORS restrictions,
+    // automatically activate the bundled script so buttons and interactions always work!
+    (function() {
+      function checkInit() {
+        if (!window.__GAME_INITIALIZED__) {
+          var s = document.createElement('script');
+          s.src = 'js/bundle.js';
+          document.head.appendChild(s);
+        }
+      }
+      if (window.location.protocol === 'file:') {
+        setTimeout(checkInit, 50);
+      } else {
+        window.addEventListener('DOMContentLoaded', function() {
+          setTimeout(checkInit, 200);
+        });
+      }
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- AMBIENT STARFIELD & HEARTS -->
+  <div id="ambient-starfield"></div>
+
+  <!-- ===================================================
+       1. OPENING SCREEN — LIVING PIXEL-ART GAME WORLD
+  =================================================== -->
+  <div id="screen-landing" class="screen">
+    <!-- Responsive Full-View Pixel-Art World Canvas -->
+    <div class="opening-stage">
+      <canvas id="opening-world-canvas" width="960" height="540" title="Klik Nidan, Jinan, atau Kucing untuk Berinteraksi!"></canvas>
+
+      <!-- Left Overlay: Game Title & Chunky Pixel Menu Buttons (Matching Reference) -->
+      <div class="opening-ui-layer">
+        <div class="opening-title-card">
+          <!-- Pixel Heart Emblem (Half Blue Nidan + Half Pink Jinan) -->
+          <div class="opening-heart-badge" title="Player One (Nidan) & Player Two (Jinan)">
+            <svg class="pixel-duo-heart" width="56" height="48" viewBox="0 0 26 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Pixel grid heart outline -->
+              <path d="M7 1H10V3H7V1ZM16 1H19V3H16V1Z" fill="#0f172a"/>
+              <path d="M4 3H7V5H4V3ZM10 3H12V5H10V3ZM14 3H16V5H14V3ZM19 3H22V5H19V3Z" fill="#0f172a"/>
+              <path d="M2 5H4V9H2V5ZM12 5H14V7H12V5ZM22 5H24V9H22V5Z" fill="#0f172a"/>
+              <path d="M1 9H2V13H1V9ZM24 9H25V13H24V9Z" fill="#0f172a"/>
+              <path d="M2 13H4V16H2V13ZM22 13H24V16H22V13Z" fill="#0f172a"/>
+              <path d="M4 16H6V18H4V16ZM20 16H22V18H20V16Z" fill="#0f172a"/>
+              <path d="M6 18H8V20H6V18ZM18 18H20V20H18V18Z" fill="#0f172a"/>
+              <path d="M8 20H11V21H8V20ZM15 20H18V21H15V20Z" fill="#0f172a"/>
+              <path d="M11 21H15V22H11V21ZM12 22H14V23H12V22Z" fill="#0f172a"/>
+              <!-- Fill Left Half: Vibrant Cyan Blue (Player One: Nidan) -->
+              <path d="M7 3H10V5H7V3ZM4 5H10V9H4V5ZM2 9H13V13H2V9ZM4 13H13V16H4V13ZM6 16H13V18H6V16ZM8 18H13V20H8V18ZM11 20H13V21H11V20Z" fill="#38bdf8"/>
+              <!-- White highlight on left -->
+              <path d="M5 6H7V8H5V6ZM4 9H6V11H4V9Z" fill="#ffffff"/>
+              <!-- Fill Right Half: Soft Pastel Pink (Player Two: Jinan) -->
+              <path d="M16 3H19V5H16V3ZM16 5H22V9H16V5ZM13 7H14V21H13V7ZM13 9H24V13H13V9ZM13 13H22V16H13V13ZM13 16H20V18H13V16ZM13 18H18V20H13V18ZM13 20H15V21H13V20Z" fill="#f472b6"/>
+              <!-- White highlight on right -->
+              <path d="M19 6H21V8H19V6Z" fill="#fce7f3"/>
+            </svg>
+          </div>
+
+          <h1 class="opening-title">PLAYER TWO,<br>FOREVER</h1>
+          <p class="opening-tagline">A Little Indie Adventure, Made with Love</p>
+
+          <!-- Chunky Retro Pixel Art Buttons (Matching Reference Design) -->
+          <div class="opening-menu-group">
+            <button class="btn-pixel-game btn-game-gold" id="btn-start-quest">
+              <span class="btn-pixel-icon">▶</span> START ADVENTURE
+            </button>
+            <button class="btn-pixel-game btn-game-green" id="btn-show-how">
+              <span class="btn-pixel-icon">📖</span> CARA MAIN
+            </button>
+            <button class="btn-pixel-game btn-game-blue" id="btn-sound-toggle-menu">
+              <span class="btn-pixel-icon" id="menu-sound-icon">🔊</span> <span id="menu-sound-text">AUDIO: NYALA</span>
+            </button>
+          </div>
+
+          <div class="opening-footer-note">
+            <span>Nidan &amp; Jinan • A Special Birthday Quest</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PlayStation Noise Game Over Modal -->
+  <div id="modal-gameover" class="crt-glitch-overlay" style="display:none;">
+    <div class="crt-box">
+      <div class="crt-tag">⚠️ SIGNAL INTERRUPTED</div>
+      <h2 class="crt-title">GAME OVER</h2>
+      <p class="crt-desc">
+        Sinyal PlayStation terganggu oleh gelombang noise misterius!<br>
+        Hindari anomali glitch di sekitar layar pembukaan dan sentuh PlayStation untuk memulai.
+      </p>
+      <button class="btn-pixel btn-gold" id="btn-noise-retry" style="padding:12px 28px;font-size:10px;">
+        🔄 COBA LAGI (RETRY)
+      </button>
+    </div>
+  </div>
+
+  <!-- ===================================================
+       2. HOW TO PLAY MODAL
+  =================================================== -->
+  <div id="screen-howto" class="screen hidden">
+    <div class="modal-window">
+      <div class="modal-header">PETUNJUK PETUALANGAN</div>
+      
+      <div class="guide-card">
+        <h4>KONTROL KEYBOARD (LAPTOP / PC)</h4>
+        <ul>
+          <li><span class="key-cap">A</span> / <span class="key-cap">D</span> atau <span class="key-cap">◀</span> / <span class="key-cap">▶</span> Bergerak ke Kiri / Kanan</li>
+          <li><span class="key-cap">SPACE</span> / <span class="key-cap">W</span> / <span class="key-cap">▲</span> Melompat</li>
+          <li><span class="key-cap">E</span> Interaksi Objek & Terminal</li>
+          <li><span class="key-cap">ESC</span> Pause Permainan</li>
+        </ul>
+      </div>
+
+      <div class="guide-card">
+        <h4>KONTROL SENTUH (SMARTPHONE)</h4>
+        <p>Gunakan tombol panah di kiri bawah untuk bergerak dan tombol lompat di kanan bawah.</p>
+      </div>
+
+      <div class="guide-card">
+        <h4>DUA KARAKTER: NIDAN & JINAN</h4>
+        <p>
+          Kamu mengendalikan Nidan (Player One, Mahasiswa dengan laptop) melintasi rintangan dunia untuk menemui Jinan (Player Two, Mahasiswi pembawa laptop sleeve) yang setia menemani dan menanti di setiap checkpoint. Setiap ruangan yang berhasil diselesaikan akan mempersempit jarak hingga <strong>0 KM</strong>!
+        </p>
+      </div>
+
+      <div style="text-align: center; margin-top: 20px;">
+        <button class="btn-pixel btn-primary" id="btn-close-how">MULAI BERPETUALANG</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================
+       3. PLAYABLE GAME SCREEN (HUD + FULLSCREEN CANVAS)
+  =================================================== -->
+  <div id="screen-game" class="screen hidden">
+    <!-- Top HUD Bar -->
+    <div id="game-hud">
+      <div class="hud-pill hud-objective" id="hud-obj">
+        <span>ITEM</span> <span id="hud-item-count">0</span>/<span id="hud-item-max">3</span>
+      </div>
+
+      <!-- Character Badges -->
+      <div class="hud-characters">
+        <span class="char-badge-icon active" id="char-badge-boy" title="Player One: Nidan 💻">💻</span>
+        <span class="char-badge-icon inactive" id="char-badge-girl" title="Player Two: Jinan 🌸">🌸</span>
+        <button class="btn-switch-char" id="btn-char-switch" style="display:none;" title="Ganti Karakter">GANTI (Q)</button>
+      </div>
+
+      <!-- Distance Indicator -->
+      <div class="hud-pill hud-distance" id="hud-distance-pill">
+        <span class="hud-distance-icon">✈</span>
+        <span id="hud-dist-val">1,500 KM</span>
+      </div>
+
+      <div class="hud-pill hud-title" id="hud-room-title">
+        ROOM 1: WHERE IT ALL BEGAN
+      </div>
+      <div class="hud-pill hud-stars">
+        <span>★</span> <span id="hud-stars">0</span>
+      </div>
+      <div class="hud-actions">
+        <button class="hud-btn" id="btn-sound-toggle" title="Toggle Sound">AUDIO</button>
+        <button class="hud-btn" id="btn-fullscreen-toggle" title="Toggle Fullscreen">LAYAR</button>
+        <button class="hud-btn" id="btn-game-pause" title="Pause Game">JEDA</button>
+      </div>
+    </div>
+
+    <!-- Responsive Game Canvas Viewport -->
+    <div id="canvas-viewport">
+      <canvas id="gameCanvas" width="800" height="450"></canvas>
+      
+      <!-- In-Game Interaction Floating Toast -->
+      <div id="interaction-toast" style="position:absolute;top:16px;background:rgba(21,9,42,0.95);border:1.5px solid var(--col-rose);padding:7px 18px;border-radius:18px;font-family:var(--font-body);font-size:13px;color:#ffffff;display:none;z-index:36;box-shadow:0 8px 20px rgba(0,0,0,0.7);pointer-events:none;"></div>
+
+      <!-- Room Transition Overlay -->
+      <div id="room-transition">
+        <div class="room-trans-badge" id="trans-badge">CHAPTER 1</div>
+        <div class="room-trans-title" id="trans-title">WHERE IT ALL BEGAN</div>
+        <div class="room-trans-sub" id="trans-sub">“Setiap cerita indah selalu punya halaman pertama…”</div>
+      </div>
+
+      <!-- Room Surprise Enter Checkpoint Banner (Step 6 of Surprise Flow) -->
+      <div id="room-surprise-enter-banner" class="room-surprise-enter-banner" style="display:none;">
+        <div class="prompt-text">✨ KEJUTAN ROOM TERSEDIA! ✨</div>
+        <button class="btn-pixel btn-gold" id="btn-room-surprise-enter" style="padding:10px 22px;font-size:10px;">
+          BUKA KEJUTAN (TEKAN ENTER / E) ▶
+        </button>
+      </div>
+    </div>
+
+    <!-- On-Screen Touch Controls for Mobile (Platformer Rooms) -->
+    <div id="touch-controls">
+      <div class="touch-dpad">
+        <div class="touch-btn" id="tc-left">◀</div>
+        <div class="touch-btn" id="tc-right">▶</div>
+      </div>
+      <div class="touch-switch-btn" id="tc-char-switch" style="display:none;" title="Ganti Karakter">🔄</div>
+      <button class="hud-btn" id="tc-pause" style="padding:10px 14px;font-size:11px;">JEDA</button>
+      <div class="touch-btn touch-jump-btn" id="tc-jump">▲</div>
+    </div>
+
+    <!-- ===================================================
+         MINI-GAME OVERLAYS (Layered on top of canvas)
+    =================================================== -->
+
+    <!-- Room 1: Memory Card Game UI Overlay -->
+    <div id="mg1-overlay" class="mg-overlay" style="display:none;">
+      <div class="mg-btn-row">
+        <button class="btn-pixel btn-primary" id="mg1-btn-play" style="font-size:9px;padding:8px 16px;">▶ MULAI GAME</button>
+        <button class="btn-pixel btn-secondary" id="mg1-btn-retry" style="font-size:9px;padding:8px 16px;">↺ ULANGI</button>
+      </div>
+    </div>
+
+    <!-- Room 2: Snakes & Ladders UI Overlay -->
+    <div id="mg2-overlay" class="mg-overlay" style="display:none;">
+      <div class="mg-btn-row">
+        <button class="btn-pixel btn-primary" id="mg2-btn-play" style="font-size:9px;padding:8px 18px;">▶ MULAI</button>
+        <button class="btn-pixel btn-gold" id="mg2-btn-roll" style="font-size:10px;padding:10px 22px;">🎲 LEMPAR DADU</button>
+        <button class="btn-pixel btn-secondary" id="mg2-btn-retry" style="font-size:9px;padding:8px 16px;">↺ ULANGI</button>
+      </div>
+    </div>
+
+    <!-- Room 3: Car Racing UI Overlay (touch controls) -->
+    <div id="mg3-overlay" class="mg-overlay" style="display:none;">
+      <div class="mg-btn-row">
+        <button class="btn-pixel btn-secondary" id="mg3-btn-retry" style="font-size:9px;padding:8px 16px;">↺ ULANGI</button>
+      </div>
+      <div class="mg-touch-controls" id="mg3-touch-controls">
+        <div class="mg3-dpad">
+          <button class="mg3-btn-touch" id="mg3-btn-up" title="Jalur Atas">▲</button>
+          <button class="mg3-btn-touch" id="mg3-btn-down" title="Jalur Bawah">▼</button>
+          <button class="mg3-btn-touch mg3-brake-btn" id="mg3-btn-brake" title="Rem">🛑 REM</button>
+          <button class="mg3-btn-touch mg3-gas-btn" id="mg3-btn-gas" title="Gas Turbo">⛽ GAS</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Room 4: Snake Game UI Overlay (touch arrows) -->
+    <div id="mg4-overlay" class="mg-overlay" style="display:none;">
+      <div class="mg-btn-row">
+        <button class="btn-pixel btn-secondary" id="mg4-btn-retry" style="font-size:9px;padding:8px 16px;">↺ ULANGI</button>
+      </div>
+      <div class="mg4-touch-dpad">
+        <div class="mg4-dpad-row">
+          <button class="mg4-arrow-btn" id="mg4-btn-up">▲</button>
+        </div>
+        <div class="mg4-dpad-row">
+          <button class="mg4-arrow-btn" id="mg4-btn-left">◀</button>
+          <button class="mg4-arrow-btn" id="mg4-btn-down">▼</button>
+          <button class="mg4-arrow-btn" id="mg4-btn-right">▶</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================
+       4. IN-GAME REVEAL MODALS (UNIQUE PER ROOM)
+  =================================================== -->
+
+  <!-- Modal Room 1: The Origin Storybook -->
+  <div class="game-modal-backdrop" id="modal-storybook">
+    <div class="book-container">
+      <div class="book-bookmark">OUR STORY</div>
+      <div class="book-header">
+        <div class="book-tag">💌 SURAT KENANGAN DARI JINAN UNTUK NIDAN 🌸</div>
+        <h3 class="book-title" id="book-page-title">Titik Awal yang Ternyata Tak Pernah Benar-Benar Hilang</h3>
+        <div class="book-subtitle" id="book-page-subtitle" style="font-family:var(--font-body);font-size:12px;color:#92400e;font-style:italic;margin-top:4px;text-align:center;">Dari tatapan malu-malu masa SD hingga keberanian menyapa kembali.</div>
+      </div>
+      <div class="book-content" id="book-page-content"></div>
+      <div class="book-quote" id="book-page-quote" style="display:none;background:#fdf3e0;border-left:3px solid #b45309;padding:10px 14px;margin:0 0 16px 0;font-family:var(--font-body);font-size:13px;color:#78350f;font-style:italic;line-height:1.65;border-radius:0 6px 6px 0;text-align:left;overflow-wrap:break-word;"></div>
+      <div class="book-pages-nav">
+        <button class="btn-pixel btn-secondary" id="btn-book-prev" style="padding:8px 14px;font-size:9px;">◀ SEBELUMNYA</button>
+        <span class="book-page-num" id="book-page-indicator">Halaman 1 / 4</span>
+        <button class="btn-pixel btn-primary" id="btn-book-next" style="padding:8px 14px;font-size:9px;">SELANJUTNYA ▶</button>
+      </div>
+      <div style="text-align:center;margin-top:16px;">
+        <button class="btn-pixel btn-gold" id="btn-book-close" style="padding:10px 18px;font-size:10px;display:none;">LANJUTKAN PETUALANGAN</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Room 2: Polaroid Inspector -->
+  <div class="game-modal-backdrop" id="modal-polaroid">
+    <div class="modal-window" style="max-width:440px;">
+      <div class="polaroid-img-wrapper" id="polaroid-frame-box" style="width:100%;height:220px;border-radius:6px;overflow:hidden;background:#0d041c;margin-bottom:14px;">
+        <img class="polaroid-img" id="polaroid-img-view" alt="Memory Photo" src="" style="width:100%;height:100%;object-fit:cover;">
+        <canvas id="polaroid-fallback-canvas" width="300" height="240" style="display:none;width:100%;height:100%;"></canvas>
+      </div>
+      <div class="polaroid-caption-box" style="text-align:left;margin-bottom:16px;">
+        <h3 class="polaroid-title" id="polaroid-title-view" style="font-family:var(--font-retro);font-size:11px;color:var(--col-rose);margin-bottom:6px;">Momen Kecil Berharga</h3>
+        <p class="polaroid-desc" id="polaroid-desc-view" style="font-family:var(--font-body);font-size:13.5px;color:var(--text-muted);line-height:1.6;">Deskripsi kenangan yang manis...</p>
+        <div class="polaroid-date" id="polaroid-date-view" style="font-family:var(--font-retro);font-size:8px;color:var(--col-gold);margin-top:8px;">★ Memory Unlocked ★</div>
+      </div>
+      <div style="text-align:center;">
+        <button class="btn-pixel btn-primary" id="btn-polaroid-close" style="padding:10px 20px;font-size:9.5px;">SIMPAN KE ALBUM</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Room 2 Secret Reveal: Interactive Memory Vault -->
+  <div class="game-modal-backdrop" id="modal-vault">
+    <div class="vault-container">
+      <div class="cake-special-tag">ROOM 2 REVEAL — MEMORY VAULT</div>
+      <h3 style="font-family:var(--font-retro);font-size:12px;color:#ffffff;margin:10px 0 6px 0;">ARTIFAK KENANGAN MANIS LDR</h3>
+      <p style="font-family:var(--font-body);font-size:13.5px;color:var(--text-muted);margin-bottom:14px;">Pilih setiap artifak di bawah ini untuk melihat cerita kenangan kita.</p>
+      
+      <div class="vault-pedestals">
+        <button class="vault-pedestal-btn active" id="vault-btn-0" data-idx="0">
+          <span class="vault-icon">🎬</span>
+          <span class="vault-label">NOBAR LDR</span>
+        </button>
+        <button class="vault-pedestal-btn" id="vault-btn-1" data-idx="1">
+          <span class="vault-icon">😹</span>
+          <span class="vault-label">VIDEO CALL ABSURD</span>
+        </button>
+        <button class="vault-pedestal-btn" id="vault-btn-2" data-idx="2">
+          <span class="vault-icon">💌</span>
+          <span class="vault-label">DM PERTAMA</span>
+        </button>
+      </div>
+      
+      <div class="vault-detail-card" id="vault-detail-box">
+        <h4 class="vault-detail-title" id="vault-detail-title">Tiket Bioskop Nobar Jarak Jauh</h4>
+        <p class="vault-detail-desc" id="vault-detail-desc">Momen nonton film bersama dari kejauhan lewat layar laptop. Sederhana banget: hitung '1, 2, 3 play!' barengan di panggilan suara, tapi rasanya super spesial karena kesempatan nobar kayak gini nggak selalu ada di tengah padatnya kuliah kita berdua.</p>
+      </div>
+
+      <div style="margin-top:14px;">
+        <button class="btn-pixel btn-gold" id="btn-vault-close" style="padding:10px 22px;font-size:9.5px;">SIMPAN KE HATI &amp; LANJUTKAN</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Room 3: Little Things I Admire About You -->
+  <div class="game-modal-backdrop" id="modal-dialogue">
+    <div class="admire-container">
+      <div class="admire-tag">ROOM 3 REVEAL — APRESIASI TULUS 💖</div>
+      <h3 class="admire-heading">LITTLE THINGS I ADMIRE ABOUT YOU</h3>
+      <p class="admire-sub">Hal-hal kecil tentang karakter, usaha, dan kebaikan Nidan yang selalu bikin Jinan kagum dan bangga.</p>
+
+      <div class="admire-tabs">
+        <button class="admire-tab-btn active" id="admire-tab-0" data-idx="0">
+          <span>💻</span> <span>KERJA KERAS</span>
+        </button>
+        <button class="admire-tab-btn" id="admire-tab-1" data-idx="1">
+          <span>🌿</span> <span>KESABARAN</span>
+        </button>
+        <button class="admire-tab-btn" id="admire-tab-2" data-idx="2">
+          <span>☕</span> <span>PERHATIAN</span>
+        </button>
+        <button class="admire-tab-btn" id="admire-tab-3" data-idx="3">
+          <span>🐱</span> <span>SISI HUMOR</span>
+        </button>
+      </div>
+
+      <div class="admire-detail-card" id="admire-detail-box">
+        <h4 class="admire-detail-title" id="admire-detail-title">💻 Ketekunan &amp; Kerja Kerasmu</h4>
+        <div class="admire-detail-sub" id="admire-detail-sub">Di Balik Layar Laptop &amp; Hari-Hari Kuliahmu</div>
+        <p class="admire-detail-text" id="admire-detail-text">
+          Aku selalu kagum melihat caramu berjuang setiap hari. Di tengah tumpukan tugas kuliah, baris-baris kode, dan layar laptop yang menyala sampai larut malam, kamu tidak pernah mengeluh. Kegigihanmu berjuang demi masa depan adalah salah satu hal yang paling membuatku bangga memiliki kamu.
+        </p>
+      </div>
+
+      <!-- Hidden fallback for legacy readers -->
+      <div style="display:none;">
+        <canvas id="dialog-avatar-canvas" width="48" height="48"></canvas>
+        <h4 id="dialog-author">DARI JINAN</h4>
+        <p id="dialog-message"></p>
+      </div>
+
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px;">
+        <button class="btn-pixel btn-gold" id="btn-dialog-continue" style="padding:11px 22px;font-size:9.5px;">
+          SIMPAN DI HATI &amp; LANJUTKAN ▶
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Room 4: Mystery Gift Box & Future Beacon -->
+  <div class="game-modal-backdrop" id="modal-giftbox">
+    <div class="gift-modal-box">
+      <div class="cake-special-tag" style="margin-bottom:12px;">ROOM 4 REVEAL — HORIZON OF TOMORROW 🌟</div>
+      <div class="gift-box-icon">🎁</div>
+      <h3 id="gift-modal-title" style="font-family:var(--font-retro);font-size:11px;color:var(--col-gold-lt);margin-bottom:14px;line-height:1.5;overflow-wrap:break-word;">PESAN UNTUK MASA DEPANMU</h3>
+      <div id="gift-modal-body" style="margin-bottom:12px;text-align:left;"></div>
+      <div class="future-quote-box" id="gift-modal-quote" style="text-align:left;overflow-wrap:break-word;"></div>
+      <p style="font-family:var(--font-retro);font-size:8px;color:var(--col-rose);margin-bottom:18px;">
+        🗝️ KUNCI HATI EMAS DITEMUKAN — GERBANG PERAYAAN TERBUKA!
+      </p>
+      <button class="btn-pixel btn-gold" id="btn-giftbox-close" style="padding:12px 24px;font-size:10px;">
+        BUKA PINTU PERAYAAN ULANG TAHUN 🎂
+      </button>
+    </div>
+  </div>
+
+  <!-- ===================================================
+       5. FINAL BIRTHDAY SURPRISE (7 SEAMLESS CINEMATIC SCENES)
+  =================================================== -->
+
+  <!-- SCENE 1: THE FINAL MEETING -->
+  <div id="screen-finale-meeting" class="screen hidden">
+    <div class="finale-stage">
+      <div class="finale-tag">CHAPTER 5: THE FINAL CONVERGENCE</div>
+      <h1 class="finale-heading">TITIK TEMU NIDAN & JINAN</h1>
+      <p class="finale-sub">Dua langkah yang terpisah jarak dan waktu, kini akhirnya berdiri berhadapan satu sama lain.</p>
+      
+      <div class="meeting-speech-bubble" id="meeting-speech-bubble" style="display:none;">
+        <strong style="color:var(--col-rose);font-family:var(--font-retro);font-size:9px;display:block;margin-bottom:6px;">JINAN:</strong>
+        “Hai Nidanku sayang... akhirnya nyampe juga hihi. Aku udah nungguin kamu!”
+      </div>
+
+      <canvas id="meeting-canvas" width="260" height="160"></canvas>
+      
+      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:10px;">
+        <button class="btn-pixel btn-primary" id="btn-meeting-approach" style="padding:13px 26px;font-size:10px;">
+          DEKATI JINAN
+        </button>
+        <button class="btn-pixel btn-gold" id="btn-meeting-next" style="padding:13px 26px;font-size:10px;display:none;">
+          GANDENG TANGAN KE BABAK BERIKUTNYA ▶
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 2: AFFECTIONATE CLING & WALK TO CAKE -->
+  <div id="screen-finale-cling" class="screen hidden">
+    <div class="finale-stage">
+      <div class="finale-tag">HANGAT & DEKAT</div>
+      <h1 class="finale-heading">TIADA LAGI JARAK DI ANTARA KITA</h1>
+      <div class="cling-narrative-bubble">
+        Dengan rasa rindu yang meluap setelah sekian lama terpisah jarak kuliah, Nidan menyandarkan kepala dengan senyum manja di pundak Jinan. Jinan tersenyum lembut mengelus, lalu mereka saling menggenggam tangan dengan penuh kehangatan.
+      </div>
+      
+      <canvas id="cling-walk-canvas" width="320" height="160"></canvas>
+      
+      <div style="margin-top:14px;">
+        <button class="btn-pixel btn-gold" id="btn-cling-to-cake" style="padding:13px 28px;font-size:10px;">
+          GANDENG KE MEJA KUE ▶
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 3: THE BIRTHDAY CAKE REVEAL & CELEBRATION -->
+  <div id="screen-finale-cake" class="screen hidden">
+    <canvas id="confetti-canvas"></canvas>
+    <div class="cake-full-stage">
+      <div class="cake-special-tag" id="cake-status-badge">SPECIAL BIRTHDAY MOMENT</div>
+      <h2 class="cake-wish-prompt" id="cake-wish-text">
+        Tutup matamu sejenak, buat permohonan tulus dalam hati...
+      </h2>
+      
+      <!-- 3D Isometric Pixel Cake Canvas -->
+      <canvas id="cake-3d-canvas" width="380" height="260"></canvas>
+      
+      <div class="cake-action-container" id="cake-actions-pre-blow">
+        <button class="btn-pixel btn-gold" id="btn-cake-blow" style="font-size:11px;padding:14px 32px;">
+          TIUP LILINNYA (MAKE A WISH)
+        </button>
+        <button class="btn-pixel btn-secondary" id="btn-cake-mic" style="font-size:8.5px;padding:7px 16px;">
+          Opsi: Tiup Langsung ke Mikrofon
+        </button>
+        <div class="mic-status-text" id="mic-status-text"></div>
+      </div>
+
+      <div class="cake-action-container" id="cake-actions-post-blow" style="display:none;margin-top:14px;">
+        <h1 class="celebrate-bday-headline">HAPPY BIRTHDAY, NIDAN!</h1>
+        <p class="celebrate-bday-sub">
+          Lilin telah ditiup, doa tulus telah terpanjat ke langit semesta.
+        </p>
+        <button class="btn-pixel btn-gold" id="btn-cake-to-speech" style="padding:14px 30px;font-size:11px;">
+          DENGARKAN UCAPAN DARI JINAN ▶
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 4: UCAPAN ULANG TAHUN DARI KARAKTER CEWEK -->
+  <div id="screen-finale-speech" class="screen hidden">
+    <div class="finale-stage">
+      <div class="finale-tag">UCAPAN SPESIAL UNTUK NIDAN</div>
+      <h2 class="finale-heading">DARI HATI YANG TERDALAM</h2>
+      
+      <canvas id="speech-duo-canvas" width="240" height="130"></canvas>
+      
+      <div class="speech-dialog-box">
+        <div class="speech-author-tag">
+          <span>JINAN BERKATA:</span>
+        </div>
+        <div class="speech-text-content" id="speech-text-content">
+          <!-- Typewriter content loaded dynamically -->
+        </div>
+      </div>
+      
+      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+        <button class="btn-pixel btn-secondary" id="btn-speech-replay" style="padding:9px 16px;font-size:9px;">BACA ULANG</button>
+        <button class="btn-pixel btn-gold" id="btn-speech-to-video" style="padding:11px 24px;font-size:10px;">TONTON VIDEO DARI JINAN ▶</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 5: FULLSCREEN VIDEO THEATER -->
+  <div id="screen-finale-video" class="screen hidden">
+    <div class="video-theater-wrapper">
+      <div class="theater-tag">VIDEO MESSAGE THEATER</div>
+      <h2 class="theater-heading">Pesan Spesial dari Jinan</h2>
+      <p class="theater-sub">Duduklah dengan nyaman dan dengarkan apa yang ingin ia sampaikan.</p>
+      
+      <div class="cinema-screen-frame">
+        <video id="birthday-video" playsinline preload="metadata" controls>
+          <source src="assets/videos/1.mp4" type="video/mp4">
+        </video>
+        
+        <div class="video-mockup-placeholder" id="video-mockup-box">
+          <div class="video-mockup-icon">🎥</div>
+          <div class="video-mockup-title">PESAN VIDEO ULANG TAHUN</div>
+          <p class="video-mockup-sub">
+            Letakkan file rekaman ucapanmu dengan nama <code>birthday-message.mp4</code> di folder project ini. Video akan langsung tampil di layar ini.
+          </p>
+          <div style="font-family:var(--font-retro);font-size:8px;color:var(--col-gold);">
+            Dibuat khusus dengan penuh cinta
+          </div>
+        </div>
+      </div>
+
+      <div class="video-controls-bar">
+        <button class="btn-pixel btn-primary" id="btn-vid-play" style="padding:8px 16px;font-size:9px;">PLAY / PAUSE</button>
+        <button class="btn-pixel btn-secondary" id="btn-vid-replay" style="padding:8px 16px;font-size:9px;">REPLAY</button>
+        <button class="btn-pixel btn-secondary" id="btn-vid-sound" style="padding:8px 16px;font-size:9px;">SUARA AKTIF</button>
+      </div>
+
+      <div style="margin-top:10px;">
+        <button class="btn-pixel btn-gold" id="btn-to-letter" style="padding:12px 24px;font-size:10px;">
+          BUKA SURAT DARI JINAN ▶
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 6: FULLSCREEN PERSONAL LETTER & HANDOVER -->
+  <div id="screen-finale-letter" class="screen hidden">
+    <canvas id="envelope-handover-canvas" width="220" height="110"></canvas>
+    
+    <div class="letter-full-card">
+      <div class="letter-postal-stamp">
+        FOR NIDAN<br>PLAYER ONE
+      </div>
+      
+      <div class="letter-heading-box">
+        <div class="cake-special-tag" style="background:#fef3c7;color:#78350f;border-color:#d97706;display:inline-block;margin-bottom:8px;">
+          SURAT SPESIAL ULANG TAHUN
+        </div>
+        <h2 class="letter-main-title">Surat Cinta untuk Nidanku</h2>
+        <div class="letter-date-stamp">Spesial Hari Ulang Tahunmu</div>
+        <div style="display:flex;gap:8px;justify-content:center;margin-top:12px;">
+          <button class="btn-pixel btn-primary" id="btn-letter-lang-id" style="font-size:8px;padding:6px 14px;">&#127470;&#127465; Bahasa Indonesia</button>
+          <button class="btn-pixel btn-secondary" id="btn-letter-lang-en" style="font-size:8px;padding:6px 14px;">&#127468;&#127463; English</button>
+        </div>
+      </div>
+
+      <!-- SACRED COUPLE PHOTO SCRAPBOOK SPOTLIGHT (Single Authentic Photo) -->
+      <div class="scrapbook-photo-card" id="scrapbook-couple-photo">
+        <div class="scrapbook-washi-tape"></div>
+        <div class="scrapbook-photo-inner">
+          <img src="assets/images/1.jpeg" alt="Nidan &amp; Jinan" class="scrapbook-img" onerror="this.onerror=null; this.src='assets/images/1.jpg';">
+          <div class="scrapbook-caption">
+            “Player One &amp; Player Two — In every version of tomorrow ♡”
+          </div>
+        </div>
+        <!-- Romantic floral & starlight accents (without covering the photo) -->
+        <span class="scrapbook-deco-item deco-tl" title="Bunga Cinta">🌸</span>
+        <span class="scrapbook-deco-item deco-tr" title="Bintang Harapan">✨</span>
+        <span class="scrapbook-deco-item deco-bl" title="Bunga Liar">🌷</span>
+        <span class="scrapbook-deco-item deco-br" title="Cinta Abadi">💜</span>
+      </div>
+
+      <div class="letter-text-body" id="letter-content-body">
+        <p>
+          Hai <strong>Nidanku sayang</strong>,
+        </p>
+        <p>
+          Selamat ulang tahun ya, Sayang! Game petualangan kecil ini kurancang dan kusiapkan sepenuh hati khusus sebagai kado di hari bahagiamu. Karakter utamanya sengaja kubuat berwujud mahasiswa yang selalu membawa laptop ke mana-mana, persis seperti sosokmu yang selalu kukagumi: seseorang yang tekun, gigih berjuang di tengah padatnya tugas kuliah dan jadwal yang melelahkan, tapi selalu menyisakan kehangatan dan waktu luang untuk menghubungiku.
+        </p>
+        <p>
+          Kalau diingat-ingat lagi, lucu banget ya perjalanan kita. Dari zaman SD kelas 3 sampai SMP kelas 1 waktu aku cuma berani merhatiin kamu diam-diam sambil salting dan kabur-kaburan kalau papasan, sampai akhirnya takdir mempertemukan kita lagi lewat sebuah follow dan DM sederhana yang kamu kirimkan buat memastikan gebetan lamamu ini, hihi.
+        </p>
+        <p>
+          Terima kasih ya sudah menjadi Player One yang luar biasa. Terima kasih buat setiap momen nobar film jarak jauh yang selalu kita tunggu-tunggu, dan tentunya buat video call larut malam kita yang penuh tawa lepas — apalagi kalau salah satu dari kita udah mulai joget absurd gak jelas atau pasang gaya 'muntah kucing' yang bikin ngakak sampai sakit perut. Hal-hal konyol dan sederhana bersamamu selalu jadi bagian favorit dalam hariku.
+        </p>
+        <p>
+          Semoga kita bisa terus baik-baik saja, saling menguatkan, saling support di setiap fase hidup, dan kelak bisa segera bertemu langsung tanpa sekat layar lagi untuk meraih happy ending yang kita impikan bersama. Aku selalu bangga punya kamu!
+        </p>
+        <div class="letter-sign-off">
+          Dengan seluruh rasa sayang dan banggaku,<br>
+          <strong>Jinan, Player Two-mu Selamanya 💜</strong>
+        </div>
+      </div>
+
+      <div class="letter-btn-group">
+        <button class="btn-pixel btn-gold" id="btn-letter-to-hug" style="padding:13px 26px;font-size:10px;">
+          PELUKAN CLIMAX UNTUK NIDAN & JINAN ▶
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 7: FINAL WARM HUG & EPILOGUE -->
+  <div id="screen-finale-hug" class="screen hidden">
+    <div class="finale-stage">
+      <div class="finale-tag">EPILOGUE • NIDAN &amp; JINAN FOREVER</div>
+      <h1 class="finale-heading">SELAMAT ULANG TAHUN, NIDANKU SAYANG 💜</h1>
+      <p class="finale-sub" style="font-style:italic;">
+        “Dari tatapan malu-malu di masa SD hingga 1,500 KM LDR, kita selalu satu hati dan satu cerita.”
+      </p>
+      
+      <canvas id="final-hug-canvas" width="260" height="160"></canvas>
+      
+      <!-- Seaside & Starlit Garden Haven (Momen Penutup Tenang) -->
+      <div class="haven-card" id="haven-card">
+        <div style="font-family:var(--font-retro);font-size:8.5px;color:var(--col-sky-lt);margin-bottom:8px;">
+          🌸 TAMAN TENANG DI TEPI SAMUDRA 🌊
+        </div>
+        <p class="haven-dialog-text">
+          “Malam begitu tenang di tepi samudra... Duduk berdua di bawah langit berbintang ini, aku cuma mau bilang terima kasih sudah menjadi Nidan yang luar biasa. Selamat ulang tahun, Sayang. Player Two-mu akan selalu ada di sini, bersamamu selamanya.”
+        </p>
+        <div class="haven-star-wish" id="haven-star-wish">
+          ✨ Bintang jatuh melintas! Permohonan cinta Nidan &amp; Jinan terukir di langit malam selamanya... 💫
+        </div>
+        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:12px;">
+          <button class="btn-pixel btn-secondary" id="btn-haven-wish" style="font-size:8.5px;padding:8px 14px;">
+            ⭐ PANDANG BINTANG JATUH
+          </button>
+          <button class="btn-pixel btn-secondary" id="btn-haven-letter" style="font-size:8.5px;padding:8px 14px;">
+            📖 BACA KEMBALI SURAT CINTA
+          </button>
+        </div>
+      </div>
+
+      <div class="letter-btn-group" style="margin-top:16px;">
+        <button class="btn-pixel btn-primary" id="btn-replay-adventure">MAINKAN LAGI</button>
+        <button class="btn-pixel btn-secondary" id="btn-return-menu">MENU UTAMA</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================
+       6. PAUSE SCREEN
+  =================================================== -->
+  <div id="screen-pause" class="screen hidden">
+    <div class="pause-panel">
+      <div class="pause-heading">PERMAINAN DIJEDA</div>
+      <div class="pause-actions">
+        <button class="btn-pixel btn-primary" id="btn-pause-resume">LANJUTKAN</button>
+        <button class="btn-pixel btn-secondary" id="btn-pause-sound-toggle">🔊 SUARA: AKTIF</button>
+        <button class="btn-pixel btn-secondary" id="btn-pause-restart">ULANGI RUANG INI</button>
+        <button class="btn-pixel btn-secondary" id="btn-pause-menu">MENU UTAMA</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

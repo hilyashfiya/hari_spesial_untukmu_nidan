@@ -1,0 +1,701 @@
+/* ===================================================
+   ROOM TRANSITIONS, SECRET SURPRISES & IN-GAME MODALS
+   Unique Physical & Artistic Identity per Room Experience
+   Player Two, Forever 💖
+=================================================== */
+
+/* Cinematic Room Transition Overlay */
+#room-transition {
+  position: absolute;
+  inset: 0;
+  background: #080312;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 35;
+  transition: opacity 0.35s ease;
+  display: none !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+  padding: 24px;
+}
+
+#room-transition.active {
+  display: flex !important;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.room-trans-badge {
+  font-family: var(--font-retro);
+  font-size: 8.5px;
+  background: rgba(124, 58, 237, 0.25);
+  color: var(--col-sky-lt);
+  padding: 5px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(192, 132, 252, 0.35);
+  letter-spacing: 1px;
+}
+
+.room-trans-title {
+  font-family: var(--font-retro);
+  font-size: clamp(14px, 3.2vw, 22px);
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+.room-trans-sub {
+  font-family: var(--font-body);
+  font-size: clamp(13.5px, 2.2vw, 15.5px);
+  color: var(--text-muted);
+  max-width: 500px;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* Base Modal Backdrop */
+.game-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 21, 43, 0.92);
+  backdrop-filter: blur(8px);
+  z-index: 100;
+  display: none !important;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.game-modal-backdrop.active {
+  display: flex !important;
+  pointer-events: auto !important;
+}
+
+/* ===================================================
+   ROOM 1: VINTAGE STORYBOOK MODAL
+=================================================== */
+.book-container {
+  background: #fdfaf2;
+  color: #382414;
+  border: 5px solid #5a2e14;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.85);
+  border-radius: 10px;
+  max-width: 540px;
+  max-height: 90vh;
+  overflow-y: auto;
+  width: 100%;
+  margin: auto;
+  padding: clamp(20px, 4vw, 28px);
+  position: relative;
+  font-family: var(--font-body);
+  box-sizing: border-box;
+}
+
+.book-bookmark {
+  position: absolute;
+  top: -10px;
+  right: 28px;
+  background: #be123c;
+  color: #ffffff;
+  font-family: var(--font-retro);
+  font-size: 7.5px;
+  padding: 5px 12px;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  letter-spacing: 0.5px;
+}
+
+.book-header {
+  text-align: center;
+  margin-bottom: 14px;
+  border-bottom: 1.5px dashed #b45309;
+  padding-bottom: 12px;
+}
+
+.book-tag {
+  font-family: var(--font-retro);
+  font-size: 8px;
+  color: #b45309;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+.book-title {
+  font-family: var(--font-retro);
+  font-size: clamp(10.5px, 2.2vw, 13px);
+  color: #5a2e14;
+  line-height: 1.45;
+}
+
+.book-content {
+  font-size: 14px;
+  line-height: 1.75;
+  color: #451a03;
+  min-height: 90px;
+  margin-bottom: 18px;
+  text-align: justify;
+  text-justify: inter-word;
+  text-align-last: left;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.book-content p {
+  margin-bottom: 12px;
+  text-align: justify;
+  text-justify: inter-word;
+  text-align-last: left;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.book-pages-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #d97706;
+  padding-top: 14px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.book-page-num {
+  font-family: var(--font-retro);
+  font-size: 8px;
+  color: #92400e;
+}
+
+/* ===================================================
+   ROOM 2: MEMORY VAULT INSPECTOR
+=================================================== */
+.vault-container {
+  background: #0f1e36;
+  border: 2px solid rgba(56, 189, 248, 0.45);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.85);
+  border-radius: 12px;
+  max-width: 540px;
+  max-height: 90vh;
+  overflow-y: auto;
+  width: 100%;
+  margin: auto;
+  padding: clamp(20px, 4vw, 26px);
+  box-sizing: border-box;
+}
+
+.vault-container .cake-special-tag,
+.vault-container h3,
+.vault-container > p {
+  text-align: center;
+}
+
+.vault-pedestals {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin: 16px 0;
+  flex-wrap: wrap;
+}
+
+.vault-pedestal-btn {
+  background: linear-gradient(180deg, rgba(16, 42, 78, 0.95) 0%, rgba(10, 26, 48, 0.95) 100%);
+  border: 2px solid rgba(56, 189, 248, 0.4);
+  border-radius: 9px;
+  padding: 12px 14px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.18s ease;
+  min-width: 110px;
+  flex: 1 1 105px;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.vault-pedestal-btn:hover {
+  background: linear-gradient(180deg, rgba(2, 132, 199, 0.4) 0%, rgba(16, 42, 78, 0.95) 100%);
+  border-color: #38bdf8;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(2, 132, 199, 0.35);
+}
+
+.vault-pedestal-btn.active {
+  background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%);
+  border-color: #fef08a;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.6), 0 6px 14px rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+.vault-icon {
+  font-size: 24px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+}
+
+.vault-label {
+  font-family: var(--font-retro);
+  font-size: 7.5px;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+.vault-detail-card {
+  background: rgba(7, 21, 43, 0.9);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 8px;
+  padding: 16px 18px;
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.vault-detail-title {
+  font-family: var(--font-retro);
+  font-size: 10px;
+  color: var(--col-gold-lt);
+  margin-bottom: 8px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.vault-detail-desc {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  color: var(--text-main);
+  line-height: 1.7;
+  text-align: justify;
+  text-justify: inter-word;
+  text-align-last: left;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* ===================================================
+   ROOM 3: "LITTLE THINGS I ADMIRE ABOUT YOU" MODAL
+=================================================== */
+.admire-container {
+  background: #0f1e36;
+  border: 2px solid #38bdf8;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.9);
+  border-radius: 12px;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  width: 100%;
+  margin: auto;
+  padding: clamp(20px, 4vw, 26px);
+  box-sizing: border-box;
+}
+
+.admire-tag {
+  display: block;
+  text-align: center;
+  width: fit-content;
+  margin: 0 auto 8px auto;
+}
+
+.admire-heading {
+  text-align: center;
+}
+
+.admire-sub {
+  text-align: center;
+}
+
+.admire-tag {
+  font-family: var(--font-retro);
+  font-size: 8px;
+  color: var(--col-sky-lt);
+  background: rgba(2, 132, 199, 0.25);
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  padding: 4px 12px;
+  border-radius: 12px;
+  display: inline-block;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.admire-heading {
+  font-family: var(--font-retro);
+  font-size: clamp(11px, 2.4vw, 13px);
+  color: #ffffff;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.admire-sub {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.admire-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.admire-tab-btn {
+  background: rgba(16, 42, 78, 0.85);
+  border: 1.5px solid rgba(56, 189, 248, 0.35);
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: #cbd5e1;
+  font-family: var(--font-retro);
+  font-size: 7.5px;
+  transition: all 0.15s ease;
+  width: 100%;
+}
+
+.admire-tab-btn:hover {
+  background: rgba(2, 132, 199, 0.35);
+  border-color: #38bdf8;
+  color: #ffffff;
+}
+
+.admire-tab-btn.active {
+  background: #0284c7;
+  border-color: #fef08a;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.5);
+}
+
+.admire-detail-card {
+  background: rgba(7, 21, 43, 0.92);
+  border: 1.5px solid rgba(56, 189, 248, 0.35);
+  border-radius: 8px;
+  padding: 18px 20px;
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.admire-detail-title {
+  font-family: var(--font-retro);
+  font-size: 10px;
+  color: var(--col-gold-lt);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1.4;
+}
+
+.admire-detail-sub {
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  color: var(--col-sky-lt);
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.admire-detail-text {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-main);
+  line-height: 1.75;
+  text-align: justify;
+  text-justify: inter-word;
+  text-align-last: left;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Legacy dialog banner fallback */
+.dialog-banner {
+  background: #0f1e36;
+  border: 2px solid rgba(56, 189, 248, 0.45);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85);
+  border-radius: 10px;
+  padding: 20px 22px;
+  max-width: 520px;
+  width: 100%;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.dialog-avatar-box {
+  width: 54px;
+  height: 54px;
+  background: #07152b;
+  border: 1.5px solid var(--col-rose);
+  border-radius: 8px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.dialog-text-box h4 {
+  font-family: var(--font-retro);
+  font-size: 8.5px;
+  color: var(--col-rose);
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+.dialog-text-box p {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  color: var(--text-main);
+  line-height: 1.65;
+  text-align: justify;
+  text-justify: inter-word;
+  text-align-last: left;
+  hyphens: auto;
+}
+
+/* ===================================================
+   ROOM 4: MYSTERY GIFT BOX & FUTURE BEACON MODAL
+=================================================== */
+.gift-modal-box {
+  background: #111827;
+  border: 2.5px solid #fbbf24;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.9);
+  border-radius: 12px;
+  padding: clamp(22px, 4vw, 30px);
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  width: 100%;
+  margin: auto;
+  box-sizing: border-box;
+}
+
+.gift-modal-box .cake-special-tag,
+.gift-modal-box .gift-box-icon,
+.gift-modal-box h3,
+.gift-modal-box > p:last-of-type {
+  text-align: center;
+}
+
+#gift-modal-body p {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--text-main);
+  margin-bottom: 12px;
+  text-align: justify;
+  text-justify: inter-word;
+  text-align-last: left;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.gift-box-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+  display: inline-block;
+  animation: giftBob 2.5s infinite ease-in-out;
+}
+
+@keyframes giftBob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-5px); }
+}
+
+.future-quote-box {
+  background: rgba(30, 27, 75, 0.85);
+  border-left: 3px solid #fbbf24;
+  border-radius: 0 6px 6px 0;
+  padding: 10px 14px;
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  color: var(--col-gold-lt);
+  font-style: italic;
+  margin: 14px 0 18px 0;
+  text-align: left;
+}
+
+/* Polaroid Inspector */
+.modal-window {
+  background: #0f1e36;
+  border: 2px solid rgba(56, 189, 248, 0.45);
+  border-radius: 12px;
+  padding: 22px;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.85);
+  width: 100%;
+}
+
+/* ===================================================
+   OVERFLOW & RESPONSIVE FIXES
+   Prevent text from escaping containers on all screens
+=================================================== */
+
+/* General modal overflow safety */
+.book-container,
+.vault-container,
+.admire-container,
+.gift-modal-box,
+.modal-window {
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Book content text */
+.book-content p,
+.book-content {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+/* Vault description text */
+.vault-detail-desc {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+/* Admire detail text */
+.admire-detail-text {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.admire-detail-sub {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+  text-align: left;
+}
+
+/* Gift modal paragraphs */
+.gift-modal-box p,
+#gift-modal-body p,
+#gift-modal-title,
+.future-quote-box {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+/* Room transition subtitle */
+.room-trans-sub {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  text-align: center;
+}
+
+/* Book quote block */
+.book-quote {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+/* ===================================================
+   MOBILE RESPONSIVE — small screens (≤600px)
+=================================================== */
+@media (max-width: 600px) {
+  .book-container {
+    padding: 16px 14px;
+    max-height: 95vh;
+  }
+
+  .book-title {
+    font-size: 10px;
+  }
+
+  .book-content {
+    font-size: 13px;
+    line-height: 1.65;
+  }
+
+  .vault-container,
+  .admire-container {
+    padding: 16px 14px;
+    max-height: 95vh;
+  }
+
+  .vault-detail-title {
+    font-size: 9px;
+  }
+
+  .vault-detail-desc,
+  .admire-detail-text,
+  .admire-detail-sub {
+    font-size: 13px;
+  }
+
+  .gift-modal-box {
+    padding: 16px 14px;
+    max-height: 95vh;
+  }
+
+  #gift-modal-title {
+    font-size: 10px;
+  }
+
+  #gift-modal-body p {
+    font-size: 13px !important;
+  }
+
+  .future-quote-box {
+    font-size: 12px;
+  }
+
+  .admire-tab-btn {
+    font-size: 7px;
+    padding: 7px 8px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .book-pages-nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+/* ===================================================
+   ROOM TRANSITION LDR 1,500 KM TRACKER & CAT
+=================================================== */
+.trans-ldr-tracker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(16, 42, 78, 0.8);
+  border: 1px solid #38bdf8;
+  padding: 6px 14px;
+  border-radius: 14px;
+  margin-top: 6px;
+}
+
+.trans-plane {
+  font-size: 14px;
+}
+
+.trans-dist-text {
+  font-family: var(--font-retro);
+  font-size: 7.5px;
+  color: #fef08a;
+  letter-spacing: 0.5px;
+}
+
+.trans-cat-mascot {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: #cbd5e1;
+  margin-top: 4px;
+}

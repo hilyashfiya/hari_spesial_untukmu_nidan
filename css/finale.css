@@ -1,0 +1,866 @@
+/* ===================================================
+   BIRTHDAY FINALE STYLES (7 SEAMLESS CINEMATIC SCENES)
+   Mature Emotional Storytelling with Unified Art Direction
+=================================================== */
+
+/* Shared Cinematic Stage */
+.finale-stage {
+  position: relative;
+  max-width: 680px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  padding: 20px;
+}
+
+.finale-tag {
+  text-align: center;
+  font-family: var(--font-retro);
+  font-size: clamp(8px, 1.2vw, 9px);
+  color: var(--col-gold-lt);
+  background: rgba(124, 58, 237, 0.2);
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  padding: 5px 16px;
+  border-radius: 14px;
+  margin-bottom: 14px;
+  letter-spacing: 0.8px;
+}
+
+.finale-heading {
+  text-align: center;
+  font-family: var(--font-retro);
+  font-size: clamp(14px, 2.8vw, 20px);
+  color: #ffffff;
+  line-height: 1.45;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.finale-sub {
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: clamp(14px, 2vw, 15px);
+  color: var(--text-muted);
+  max-width: 500px;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+/* ===================================================
+   SCENE 1: THE FINAL MEETING
+=================================================== */
+#screen-finale-meeting {
+  background: radial-gradient(circle at 50% 35%, #1d0a38 0%, #0c041a 65%, #05010b 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 40;
+}
+
+#meeting-canvas {
+  image-rendering: pixelated;
+  width: 260px;
+  height: 160px;
+  margin: 10px 0 20px 0;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.7));
+}
+
+.meeting-speech-bubble {
+  background: #17092e;
+  border: 1.5px solid rgba(244, 114, 182, 0.45);
+  border-radius: 8px;
+  padding: 12px 20px;
+  max-width: 480px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-main);
+  line-height: 1.6;
+  margin: 10px auto 16px auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  animation: fadeInBubble 0.35s ease-out;
+}
+
+@keyframes fadeInBubble {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===================================================
+   SCENE 2: AFFECTIONATE CLING & WALK TO CAKE
+=================================================== */
+#screen-finale-cling {
+  background: radial-gradient(circle at 50% 40%, #240c42 0%, #0e041c 70%, #05010b 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 41;
+}
+
+#cling-walk-canvas {
+  image-rendering: pixelated;
+  width: 320px;
+  height: 160px;
+  margin: 10px 0 20px 0;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.7));
+}
+
+#screen-finale-cling .finale-heading {
+  font-size: clamp(12.5px, 2.2vw, 16px);
+  margin-bottom: 12px;
+  line-height: 1.45;
+}
+
+.cling-narrative-bubble {
+  background: #17092e;
+  border: 1.5px solid rgba(244, 114, 182, 0.45);
+  border-left: 3px solid rgba(244, 114, 182, 0.65);
+  border-radius: 8px;
+  padding: 18px 24px;
+  max-width: 520px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-main);
+  line-height: 1.75;
+  text-align: justify;
+  text-justify: inter-word;
+  text-align-last: left;
+  hyphens: auto;
+  margin-top: 4px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.6);
+  overflow-wrap: break-word;
+  word-break: break-word;
+  box-sizing: border-box;
+}
+
+/* ===================================================
+   SCENE 3: THE BIRTHDAY CAKE REVEAL
+=================================================== */
+#screen-finale-cake {
+  background: radial-gradient(circle at 50% 40%, #1c0a34 0%, #0c041a 65%, #05010a 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 42;
+}
+
+.cake-full-stage {
+  position: relative;
+  max-width: 680px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.cake-special-tag {
+  text-align: center;
+  font-family: var(--font-retro);
+  font-size: clamp(8px, 1.2vw, 9px);
+  color: var(--col-gold-lt);
+  background: rgba(251, 191, 36, 0.15);
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  padding: 5px 16px;
+  border-radius: 14px;
+  margin-bottom: 12px;
+  letter-spacing: 0.8px;
+}
+
+.cake-wish-prompt {
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: clamp(16px, 2.8vw, 20px);
+  color: var(--col-lavender-lt);
+  margin-bottom: 16px;
+}
+
+#cake-3d-canvas {
+  image-rendering: pixelated;
+  max-width: 420px;
+  width: 90%;
+  height: auto;
+  filter: drop-shadow(0 16px 30px rgba(0, 0, 0, 0.8));
+  margin-bottom: 18px;
+}
+
+.cake-action-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.mic-status-text {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--col-gold);
+  min-height: 18px;
+}
+
+#confetti-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+}
+
+.celebrate-bday-headline {
+  text-align: center;
+  font-family: var(--font-retro);
+  font-size: clamp(18px, 3.8vw, 28px);
+  color: var(--col-gold-lt);
+  line-height: 1.35;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.celebrate-bday-sub {
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: clamp(14px, 2vw, 16px);
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+/* ===================================================
+   SCENE 4: UCAPAN ULANG TAHUN DARI KARAKTER CEWEK
+=================================================== */
+#screen-finale-speech {
+  background: radial-gradient(circle at 50% 40%, #1a0832 0%, #0d0319 65%, #05010b 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 43;
+  text-align: center;
+}
+
+#speech-duo-canvas {
+  image-rendering: pixelated;
+  width: 240px;
+  height: 130px;
+  margin-bottom: 14px;
+}
+
+.speech-dialog-box {
+  background: #15092a;
+  border: 2px solid rgba(192, 132, 252, 0.35);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85);
+  border-radius: 8px;
+  padding: 20px 24px;
+  max-width: 560px;
+  width: 90%;
+  margin: 0 auto 18px auto;
+  text-align: left;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.speech-author-tag {
+  font-family: var(--font-retro);
+  font-size: 9px;
+  color: var(--col-rose);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(192, 132, 252, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.5px;
+}
+
+.speech-text-content {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-main);
+  line-height: 1.8;
+  min-height: 80px;
+  text-align: justify;
+  text-justify: inter-word;
+  text-align-last: left;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* ===================================================
+   SCENE 5: FULLSCREEN VIDEO THEATER (PORTRAIT ORIENTATION)
+=================================================== */
+#screen-finale-video {
+  background: radial-gradient(circle at 50% 35%, #15082a 0%, #090214 70%, #000000 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: clamp(16px, 3vh, 28px) 16px clamp(24px, 4vh, 40px) 16px;
+  overflow-y: auto;
+  z-index: 44;
+}
+
+.video-theater-wrapper {
+  max-width: 400px;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.theater-tag {
+  font-family: var(--font-retro);
+  font-size: 8.5px;
+  color: var(--col-lavender-lt);
+  background: rgba(124, 58, 237, 0.2);
+  border: 1px solid rgba(192, 132, 252, 0.3);
+  padding: 5px 14px;
+  border-radius: 12px;
+  letter-spacing: 0.8px;
+  text-align: center;
+}
+
+.theater-heading {
+  text-align: center;
+  font-family: var(--font-retro);
+  font-size: clamp(12.5px, 2.4vw, 16px);
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+
+.theater-sub {
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  color: var(--text-muted);
+  max-width: 360px;
+  line-height: 1.5;
+}
+
+.cinema-screen-frame {
+  width: 100%;
+  max-width: 340px;
+  max-height: 58vh;
+  aspect-ratio: 9/16;
+  background: #000000;
+  border: 2px solid rgba(192, 132, 252, 0.45);
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 24px rgba(192, 132, 252, 0.2);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+#birthday-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: none;
+  background: #000000;
+}
+
+#birthday-video.has-source {
+  display: block;
+}
+
+.video-mockup-placeholder {
+  position: absolute;
+  inset: 0;
+  background: #140827;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  gap: 10px;
+}
+
+.video-mockup-icon {
+  font-size: 38px;
+  color: var(--col-rose);
+}
+
+.video-mockup-title {
+  font-family: var(--font-retro);
+  font-size: 10.5px;
+  color: #ffffff;
+}
+
+.video-mockup-sub {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  color: var(--text-muted);
+  max-width: 420px;
+  line-height: 1.5;
+  text-align: justify;
+  text-justify: inter-word;
+  text-align-last: left;
+  hyphens: auto;
+}
+
+.video-controls-bar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ===================================================
+   SCENE 6: FULL PERSONAL LETTER FROM GIRLFRIEND
+=================================================== */
+#screen-finale-letter {
+  background: radial-gradient(circle at 50% 30%, #1c0a34 0%, #0a0316 70%, #040108 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  z-index: 45;
+  overflow-y: auto;
+}
+
+#envelope-handover-canvas {
+  image-rendering: pixelated;
+  width: 220px;
+  height: 110px;
+  margin-bottom: 10px;
+}
+
+.letter-full-card {
+  background: #fdfaf2;
+  color: #2b1810;
+  border: 5px solid #5a2e14;
+  border-radius: 8px;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.85);
+  max-width: 540px;
+  width: 100%;
+  padding: clamp(20px, 4vw, 26px);
+  position: relative;
+  font-family: var(--font-body);
+  margin: auto;
+  box-sizing: border-box;
+  animation: letterUnfold 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes letterUnfold {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ===================================================
+   SCRAPBOOK COUPLE PHOTO SPOTLIGHT (SINGLE REAL PHOTO)
+=================================================== */
+.scrapbook-photo-card {
+  position: relative;
+  background: #ffffff;
+  border: 2px solid #fed7aa;
+  border-radius: 6px;
+  box-shadow: 0 12px 28px rgba(90, 46, 20, 0.18), 0 2px 6px rgba(0, 0, 0, 0.08);
+  max-width: 220px;
+  margin: 12px auto 16px auto;
+  padding: 8px 8px 10px 8px;
+  transform: rotate(-1.5deg);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.scrapbook-photo-card:hover {
+  transform: rotate(0deg) scale(1.03);
+  box-shadow: 0 16px 36px rgba(90, 46, 20, 0.28);
+}
+
+.scrapbook-washi-tape {
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%) rotate(1deg);
+  width: 76px;
+  height: 18px;
+  background: rgba(254, 240, 138, 0.85);
+  border: 1px dashed rgba(217, 119, 6, 0.4);
+  border-left: none;
+  border-right: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+.scrapbook-photo-inner {
+  border-radius: 4px;
+  overflow: hidden;
+  background: #0f172a;
+}
+
+.scrapbook-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+  border-radius: 3px;
+}
+
+.scrapbook-caption {
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  color: #78350f;
+  font-style: italic;
+  margin-top: 8px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.scrapbook-deco-item {
+  position: absolute;
+  font-size: 14px;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  animation: gentleFloat 2.5s infinite alternate ease-in-out;
+}
+
+.deco-tl { top: -8px; left: -10px; }
+.deco-tr { top: -8px; right: -10px; animation-delay: 0.6s; }
+.deco-bl { bottom: -8px; left: -10px; animation-delay: 1.2s; }
+.deco-br { bottom: -8px; right: -10px; animation-delay: 1.8s; }
+
+@keyframes gentleFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-3px); }
+}
+
+.letter-postal-stamp {
+  position: absolute;
+  top: 20px;
+  right: 22px;
+  width: 54px;
+  height: 64px;
+  border: 1.5px dashed #b45309;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-retro);
+  font-size: 6.5px;
+  color: #b45309;
+  text-align: center;
+  background: #fef3c7;
+}
+
+.letter-heading-box {
+  margin-bottom: 18px;
+  border-bottom: 1.5px solid #fed7aa;
+  padding-bottom: 12px;
+  text-align: left;
+}
+
+.letter-main-title {
+  font-family: var(--font-retro);
+  font-size: clamp(11.5px, 2.2vw, 14px);
+  color: #5a2e14;
+  margin-bottom: 6px;
+}
+
+.letter-date-stamp {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  color: #b45309;
+  font-weight: 500;
+}
+
+.letter-text-body {
+  font-size: 14.5px;
+  line-height: 1.8;
+  color: #431407;
+  margin-bottom: 18px;
+  text-align: left;
+  max-height: 52vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: #d97706 #fef3c7;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.letter-text-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.letter-text-body::-webkit-scrollbar-track {
+  background: #fef3c7;
+  border-radius: 4px;
+}
+
+.letter-text-body::-webkit-scrollbar-thumb {
+  background: #d97706;
+  border-radius: 4px;
+}
+
+.letter-text-body p {
+  margin-bottom: 14px;
+  text-align: justify;
+  text-justify: inter-word;
+  text-align-last: left;
+  hyphens: auto;
+  line-height: 1.8;
+}
+
+.placeholder-mark {
+  background: #fde68a;
+  border-bottom: 1.5px solid #d97706;
+  padding: 1px 5px;
+  font-weight: 600;
+  color: #92400e;
+  border-radius: 3px;
+}
+
+.letter-sign-off {
+  text-align: right;
+  margin-top: 18px;
+  font-style: italic;
+  color: #5a2e14;
+  font-weight: 600;
+}
+
+.letter-btn-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+/* ===================================================
+   SCENE 7: FINAL WARM HUG & EPILOGUE
+=================================================== */
+#screen-finale-hug {
+  background: radial-gradient(circle at 50% 45%, #1d0936 0%, #0c0318 65%, #05010a 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 46;
+}
+
+#final-hug-canvas {
+  image-rendering: pixelated;
+  width: 260px;
+  height: 160px;
+  margin: 14px 0 20px 0;
+  filter: drop-shadow(0 16px 36px rgba(0, 0, 0, 0.85));
+}
+
+/* ===================================================
+   SEASIDE & STARLIT GARDEN HAVEN (TAMAN TENANG DI TEPI SAMUDRA)
+=================================================== */
+.haven-card {
+  background: rgba(15, 30, 54, 0.92);
+  border: 1.5px solid rgba(56, 189, 248, 0.45);
+  border-radius: 12px;
+  padding: 18px 22px;
+  max-width: 520px;
+  width: 100%;
+  margin: 12px auto 0 auto;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7);
+  animation: fadeInBubble 0.4s ease-out;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.haven-dialog-text {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-main);
+  line-height: 1.72;
+  margin-bottom: 14px;
+  text-align: justify;
+  text-justify: inter-word;
+  text-align-last: left;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+  max-width: 100%;
+}
+
+.haven-star-wish {
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  color: var(--col-gold-lt);
+  margin-bottom: 12px;
+  letter-spacing: 0;
+  display: none;
+  animation: havenPulse 1.4s infinite alternate ease-in-out;
+  text-align: center;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+  max-width: 100%;
+  transform: none;
+}
+
+@keyframes havenPulse {
+  from { opacity: 0.75; }
+  to   { opacity: 1; }
+}
+
+/* ===================================================
+   FINALE OVERFLOW & MOBILE RESPONSIVE
+=================================================== */
+.finale-heading {
+  text-align: center;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.finale-sub {
+  text-align: center;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.speech-text-container,
+#speech-text-content {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+@media (max-width: 600px) {
+  .finale-heading {
+  text-align: center;
+    font-size: clamp(14px, 4.5vw, 22px);
+  }
+
+  .finale-sub {
+  text-align: center;
+    font-size: 13px;
+  }
+
+  .letter-full-card {
+    padding: 20px 16px;
+    max-height: 90vh;
+  }
+
+  .letter-body-text {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .speech-text-container {
+    font-size: 13.5px;
+    padding: 14px 16px;
+  }
+
+  .finale-stage {
+    padding: 20px 16px;
+  }
+
+  .scrapbook-photo-card {
+    max-width: 240px;
+  }
+
+  /* Portrait video — mobile */
+  .cinema-screen-frame {
+    max-width: 85vw;
+  }
+
+  .video-theater-wrapper {
+    max-width: 92vw;
+    gap: 10px;
+  }
+
+  /* Reunion bubble — mobile */
+  .cling-narrative-bubble {
+    font-size: 13.5px;
+    padding: 14px 16px;
+    max-width: 92vw;
+  }
+
+  /* Birthday speech — mobile */
+  .speech-dialog-box {
+    width: 94%;
+    padding: 16px 18px;
+  }
+
+  .speech-text-content {
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+  /* Haven/Epilogue — mobile */
+  .haven-card {
+    max-width: 92vw;
+    padding: 14px 16px;
+  }
+
+  .haven-dialog-text {
+    font-size: 13px;
+  }
+}
+
+/* ===================================================
+   FINALE CAT BADGES & MASCOTS
+=================================================== */
+.theater-cat-badge {
+  background: rgba(16, 42, 78, 0.85);
+  border: 1px solid #f472b6;
+  border-radius: 12px;
+  padding: 5px 12px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: #fbcfe8;
+  margin-bottom: 12px;
+  display: inline-block;
+  text-align: center;
+  max-width: 90vw;
+}
+
+.pause-cat-mascot {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: #7dd3fc;
+  margin-bottom: 14px;
+}
+
+.letter-cat-courier {
+  background: #fef3c7;
+  border: 1.5px dashed #d97706;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  color: #78350f;
+  margin: 12px auto 16px auto;
+  text-align: center;
+  max-width: 440px;
+}
